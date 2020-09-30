@@ -66,7 +66,7 @@ Pod::Spec.new do |spec|
   # spec.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
+   spec.ios.deployment_target = "12"
   # spec.osx.deployment_target = "10.7"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
@@ -91,7 +91,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "ColorPicker/Source/*.{swift}"
   spec.swift_version = "5"
-  #spec.exclude_files = "Classes/Exclude"
+  spec.exclude_files = "ColorPicker/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
 
