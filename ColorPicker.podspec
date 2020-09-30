@@ -63,9 +63,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-   spec.platform     = :ios, "12.0"
-   spec.swift_version = "5.0"
-
+  # spec.platform     = :ios, "5.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -80,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/tariqmaged-bbn/ColorPicker.git" }
+  spec.source       = { :git => "https://github.com/tariqmaged-bbn/ColorPicker.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,6 +90,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.source_files  = "ColorPicker/Source/*.{swift}"
+  spec.swift_version = "4.2"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
