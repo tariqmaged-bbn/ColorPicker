@@ -52,6 +52,11 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc public func setStarterColor( color : UIColor )
+    {
+        pickerController.startingColor = color
+        //colorSlider?.setInternalColorFromOutside(color:  color)
+    }
   
     public override func layoutSubviews() {
     super.layoutSubviews()

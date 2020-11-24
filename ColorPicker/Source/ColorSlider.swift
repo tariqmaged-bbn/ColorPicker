@@ -101,7 +101,21 @@ public class ColorSlider: UIControl {
 			sendActions(for: .valueChanged)
 		}
 	}
-	
+    public func setInternalColorFromOutside(color:UIColor){
+        internalColor = HSBColor(color: color)
+        //handle black color
+        if internalColor.hue == 0{
+            centerPreview(at: CGPoint(x: bounds.maxX-2, y: bounds.midY))//hena it was bounds.maxX-2
+        } else {
+            // Set preview center from `internalColor`
+            let sliderProgress = gradientView.calculateSliderProgress(for: internalColor)
+            centerPreview(at: CGPoint(x: sliderProgress * bounds.width, y: sliderProgress * bounds.height))
+        }
+        
+        previewView?.colorChanged(to: color)
+        previewView?.transition(to: .inactive)
+    }
+
 	/// The background gradient view.
 	public let gradientView: GradientView
 	

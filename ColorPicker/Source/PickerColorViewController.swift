@@ -69,7 +69,16 @@ class PickerColorViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+    public var startingColor : UIColor = .cyan {
+        didSet {
+            guard  homeHandle != nil else {
+                print("homeHandle nil")
+                return
+            }
+            homeHandle.color = startingColor
+            colorPicker.layoutNow()
+        }
+    }
     // MARK: - Private
     private var homeHandle: ChromaColorHandle! // reference to home handle
     
@@ -192,7 +201,7 @@ class PickerColorViewController: UIViewController {
     }
     
     private func addHomeHandle() {
-        homeHandle = colorPicker.addHandle(at: .blue)
+        homeHandle = colorPicker.addHandle(at: startingColor)
         
         // Setup custom handle view with insets
         let customImageView = UIView()//UIImageView(image: #imageLiteral(resourceName: "Blend").withRenderingMode(.alwaysTemplate))
