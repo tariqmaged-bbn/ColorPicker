@@ -71,6 +71,8 @@ class PickerColorViewController: UIViewController {
     }
     public var startingColor : UIColor = .cyan {
         didSet {
+            colorChanged = startingColor
+
             guard  homeHandle != nil else {
                 print("homeHandle nil")
                 return
