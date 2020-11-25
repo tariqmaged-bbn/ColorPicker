@@ -78,7 +78,7 @@ class PickerColorViewController: UIViewController {
                 return
             }
             homeHandle.color = startingColor
-            colorPicker.layoutNow()
+            colorPicker.updateHandles()
         }
     }
     // MARK: - Private

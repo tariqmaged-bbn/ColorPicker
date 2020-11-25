@@ -70,13 +70,15 @@ public class ChromaColorPicker: UIControl, ChromaControlStylable {
       //  updateShadowIfNeeded()
         updateBorderIfNeeded()
         
+        updateHandles()
+    }
+    public func updateHandles() {
         handles.forEach { handle in
             let location = colorWheelView.location(of: handle.color)
             handle.frame.size = handleSize
             positionHandle(handle, forColorLocation: location)
         }
     }
-    
     // MARK: - Public
     
     @discardableResult

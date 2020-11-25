@@ -171,6 +171,8 @@ import UIKit
         }
     
     @objc func changedColor(_ slider: ColorSlider) {
+    
+      setStarterColor(color: slider.color)
       colorDelegate?.colorDidChange(color: slider.color, sliderColour: self)
         isPickerShowen = true
         removeCustomVC()
