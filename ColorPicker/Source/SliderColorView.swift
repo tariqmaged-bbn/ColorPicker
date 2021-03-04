@@ -20,7 +20,7 @@ import UIKit
   @objc public  var isPickerShowen = true
   @objc   var colorDelegate:ColorPickerChangedDelegate?
   @objc  let presentedVC:UIViewController?
-  @objc  let pickerController = PickerColorViewController()
+    @objc  let pickerController = PickerColorViewController()
   @objc   let pickerView:UIView?
   @objc   var tapGesture:UITapGestureRecognizer?
   @objc    let btnPicker:UIButton = {
@@ -56,6 +56,10 @@ import UIKit
     {
         pickerController.startingColor = color
         //colorSlider?.setInternalColorFromOutside(color:  color)
+    }
+    
+    @objc public func setOpacitySlider( isOpacity : Bool ){
+        pickerController.containOpacity = isOpacity
     }
   
     public override func layoutSubviews() {
@@ -108,7 +112,7 @@ import UIKit
 
      pickerController.view.widthAnchor.constraint(equalTo: pickerView.widthAnchor, multiplier: 0.8),
 
-     pickerController.view.heightAnchor.constraint(equalTo: pickerView.widthAnchor, multiplier: 0.9)
+     pickerController.view.heightAnchor.constraint(equalTo: pickerView.widthAnchor, multiplier: 1)
  ])
 
     }

@@ -28,6 +28,11 @@ internal extension UIColor {
         return brightness
     }
   
+    var alpha: CGFloat {
+        var opacity: CGFloat = 0
+        getHue(nil, saturation: nil, brightness: nil, alpha: &opacity)
+        return opacity
+    }
   
 }
 
