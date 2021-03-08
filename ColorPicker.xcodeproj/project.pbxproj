@@ -30,6 +30,7 @@
 		0657E9E2256D780900815FB3 /* SliderColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0657E9DD256D780900815FB3 /* SliderColorView.swift */; };
 		0657E9E3256D780900815FB3 /* SliderHandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0657E9DE256D780900815FB3 /* SliderHandleView.swift */; };
 		1E20730525F10FD500888F00 /* ChromaOpacitySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20730425F10FD500888F00 /* ChromaOpacitySlider.swift */; };
+		1E2FEEC125F6813A00225819 /* ColorHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FEEC025F6813A00225819 /* ColorHistoryView.swift */; };
 		1E59C33A25220E54007927B0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E59C33925220E54007927B0 /* Media.xcassets */; };
 		1EFB096B2521F6A70038A452 /* ColorPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EFB09692521F6A70038A452 /* ColorPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EFB09742521FB160038A452 /* SliderColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB09722521FB160038A452 /* SliderColorView.swift */; };
@@ -60,6 +61,7 @@
 		0657E9DD256D780900815FB3 /* SliderColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderColorView.swift; path = ColorPicker/Source/SliderColorView.swift; sourceTree = SOURCE_ROOT; };
 		0657E9DE256D780900815FB3 /* SliderHandleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SliderHandleView.swift; path = ColorPicker/Source/SliderHandleView.swift; sourceTree = SOURCE_ROOT; };
 		1E20730425F10FD500888F00 /* ChromaOpacitySlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromaOpacitySlider.swift; sourceTree = "<group>"; };
+		1E2FEEC025F6813A00225819 /* ColorHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHistoryView.swift; sourceTree = "<group>"; };
 		1E59C33925220E54007927B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		1EFB09662521F6A70038A452 /* ColorPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EFB09692521F6A70038A452 /* ColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				1EFB09732521FB160038A452 /* CustomUISlider.swift */,
 				1EFB09722521FB160038A452 /* SliderColorView.swift */,
 				1E59C33925220E54007927B0 /* Media.xcassets */,
+				1E2FEEC025F6813A00225819 /* ColorHistoryView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				0657E9D5256D77FE00815FB3 /* UIView+DropShadow.swift in Sources */,
 				0657E9C4256D77E500815FB3 /* ColorWheelViewCustom.swift in Sources */,
 				0657E9C3256D77E500815FB3 /* ChromaColorHandle.swift in Sources */,
+				1E2FEEC125F6813A00225819 /* ColorHistoryView.swift in Sources */,
 				0657E9E3256D780900815FB3 /* SliderHandleView.swift in Sources */,
 				0657E9E2256D780900815FB3 /* SliderColorView.swift in Sources */,
 				0657E9DF256D780900815FB3 /* SliderTrackView.swift in Sources */,

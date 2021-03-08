@@ -64,6 +64,7 @@ import UIKit
   
     public override func layoutSubviews() {
     super.layoutSubviews()
+        
     if let colorSlider = colorSlider{
     colorSlider.transform = CGAffineTransform(scaleX: -1, y: 1)
       }
@@ -98,7 +99,7 @@ import UIKit
     pickerController.removeFromParent()
   }
   
- @objc public func addCustomVC(){
+    @objc public func addCustomVC(addGesture:Bool = true){
     pickerController.view.translatesAutoresizingMaskIntoConstraints = false
     presentedVC?.addChild(pickerController)
     pickerView?.addSubview(pickerController.view)
@@ -122,15 +123,21 @@ import UIKit
       presentedVC.view.addSubview(clearView)
       clearView.anchor(presentedVC.view.topAnchor, left: presentedVC.view.leftAnchor, bottom: presentedVC.view.bottomAnchor, right: presentedVC.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
       tapGesture =  UITapGestureRecognizer(target: self, action: #selector(addRemovePickerVC))
-      
+        if addGesture{
       pickerView.addGestureRecognizer(tapGesture!)
+            
+        }
     presentedVC.view.bringSubviewToFront(pickerView)
-    }
-   // pickerController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    
+        pickerController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight,.flexibleBottomMargin]
     pickerController.didMove(toParent: presentedVC)
     pickerController.sliderColour = self
     pickerController.colorDelegate = presentedVC as? ColorPickerChangedDelegate
+        
+    }
   }
+    
+
     
   @objc public func removeCustomVC() {
       if let pickerView = pickerView ,let tapGesture = tapGesture,let subViewArr = presentedVC?.view.subviews{

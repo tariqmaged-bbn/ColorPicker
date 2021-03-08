@@ -17,6 +17,7 @@ class PickerColorViewController: UIViewController {
     var colorChanged = #colorLiteral(red: 0.1045806482, green: 0, blue: 1, alpha: 1)
     let brightnessSlider = ChromaBrightnessSlider()
     var containOpacity = false
+    var colorHistoryView:ColorHistoryView!
      var colorDelegate:ColorPickerChangedDelegate?
      let btnClose:UIButton = {
          let btn = UIButton()
@@ -35,6 +36,16 @@ class PickerColorViewController: UIViewController {
     lbl.backgroundColor = .clear
     return lbl
   }()
+    
+    let mainStackView:UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.alignment = .fill
+        stack.clipsToBounds = true
+        stack.spacing = 12
+        return stack
+    }()
   
   let viewWhite:UIView = {
     let vW = UIView()
@@ -48,6 +59,11 @@ class PickerColorViewController: UIViewController {
     return vW
   }()
     
+    let placeHolderView:UIView = {
+        let vieWHolder = UIView()
+        vieWHolder.backgroundColor = .clear
+        return vieWHolder
+    }()
      let sliderOpacity = ChromaOpacitySlider()
   
   let btnOk:UIButton = {
@@ -61,7 +77,9 @@ class PickerColorViewController: UIViewController {
       return btn
   }()
   
-    
+    var isNotEmptyHistory:Bool{
+        return containOpacity && !UserDefaults.colorsDataArr.isEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +91,6 @@ class PickerColorViewController: UIViewController {
         setupColorPickerHandles()
     }
     
-   
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -92,27 +109,86 @@ class PickerColorViewController: UIViewController {
         }
     }
     
-    func setupOpacitySlider(){
+//    func setupStoreView(){
+//         colorHistoryView = ColorHistoryView(pickerView: self)
+//      //  viewWhite.clipsToBounds = true
+//      //  view.isUserInteractionEnabled = true
+//        view.addSubview(colorHistoryView)
+//        colorHistoryView.anchor(viewWhite.bottomAnchor, left: viewWhite.leftAnchor, bottom: nil, right: viewWhite.rightAnchor, topConstant: 2, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
+//        view.bringSubviewToFront(colorHistoryView.collectionView)
+//    }
+//
+//    func setupOpacitySlider(){
+//        sliderOpacity.connect(to: colorPicker)
+//        sliderOpacity.trackColor = UIColor.blue
+//        sliderOpacity.handleOpacity.borderWidth = 0.5
+//        sliderOpacity.handleOpacity.borderColor = .gray
+//        sliderOpacity.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(sliderOpacity)
+//
+//        NSLayoutConstraint.activate([
+//            sliderOpacity.centerXAnchor.constraint(equalTo: colorPicker.centerXAnchor),
+//            sliderOpacity.topAnchor.constraint(equalTo: brightnessSlider.bottomAnchor, constant: 10),
+//            sliderOpacity.bottomAnchor.constraint(equalTo: viewWhite.bottomAnchor, constant: -6),
+//
+//            sliderOpacity.widthAnchor.constraint(equalTo: colorPicker.widthAnchor, multiplier: 0.85),
+//            sliderOpacity.heightAnchor.constraint(equalTo: colorPicker.widthAnchor, multiplier: 0.06)
+//        ])
+//    }
+    
+    func setupStackView(){
+        viewWhite.addSubview(mainStackView)
+        
+//        if !isNotEmptyHistory{
+//            viewWhite.addSubview(placeHolderView)
+//            placeHolderView .translatesAutoresizingMaskIntoConstraints = false
+//            placeHolderView.anchor(mainStackView.bottomAnchor, left: viewWhite.leftAnchor, bottom: viewWhite.bottomAnchor, right: viewWhite.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 24)
+//        }
+        
+        //isNotEmptyHistory ? viewWhite.bottomAnchor:placeHolderView.topAnchor
+        mainStackView.anchor(lblTitle.topAnchor, left: viewWhite.leftAnchor, bottom:viewWhite.bottomAnchor , right: viewWhite.rightAnchor, topConstant: 8, leftConstant: 8, bottomConstant: 2, rightConstant: 8, widthConstant: 0, heightConstant: 0)
+        mainStackView.addArrangedSubview(colorPicker)
+        colorPicker .translatesAutoresizingMaskIntoConstraints = false
+        colorPicker.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.75).isActive = true
+        
+        if !isNotEmptyHistory{
+            colorPicker.topAnchor.constraint(equalTo: mainStackView.topAnchor, constant: 8).isActive = true
+        }
+        
+        mainStackView.addArrangedSubview(brightnessSlider)
+        
+        brightnessSlider.connect(to: colorPicker)
+        // Style
+        brightnessSlider.trackColor = UIColor.blue
+      brightnessSlider.handle.borderWidth = 0.5
+        brightnessSlider .translatesAutoresizingMaskIntoConstraints = false
+        brightnessSlider.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.05).isActive = true
+        brightnessSlider.leftAnchor.constraint(equalTo: mainStackView.leftAnchor, constant: 4).isActive = true
+        brightnessSlider.rightAnchor.constraint(equalTo: mainStackView.rightAnchor, constant: -4).isActive = true
+//        brightnessSlider.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.95).isActive = true
+//        brightnessSlider.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor).isActive = true
+        mainStackView.addArrangedSubview(sliderOpacity)
+        
         sliderOpacity.connect(to: colorPicker)
         sliderOpacity.trackColor = UIColor.blue
         sliderOpacity.handleOpacity.borderWidth = 0.5
         sliderOpacity.handleOpacity.borderColor = .gray
-        sliderOpacity.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(sliderOpacity)
-        
-        NSLayoutConstraint.activate([
-            sliderOpacity.centerXAnchor.constraint(equalTo: colorPicker.centerXAnchor),
-            sliderOpacity.topAnchor.constraint(equalTo: brightnessSlider.bottomAnchor, constant: 10),
-            sliderOpacity.bottomAnchor.constraint(equalTo: viewWhite.bottomAnchor, constant: -6),
-            
-            sliderOpacity.widthAnchor.constraint(equalTo: colorPicker.widthAnchor, multiplier: 0.85),
-            sliderOpacity.heightAnchor.constraint(equalTo: colorPicker.widthAnchor, multiplier: 0.06)
-        ])
+        sliderOpacity .translatesAutoresizingMaskIntoConstraints = false
+        sliderOpacity.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.05).isActive = true
+        sliderOpacity.leftAnchor.constraint(equalTo: mainStackView.leftAnchor, constant: 4).isActive = true
+        sliderOpacity.rightAnchor.constraint(equalTo: mainStackView.rightAnchor, constant: -4).isActive = true
+       
+        colorHistoryView = ColorHistoryView(pickerView: self)
+       // if isNotEmptyHistory{
+        mainStackView.addArrangedSubview(colorHistoryView)
+        colorHistoryView .translatesAutoresizingMaskIntoConstraints = false
+        colorHistoryView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: isNotEmptyHistory ? 0.075:0.05).isActive = true
+        //}
     }
     
   func setupColorPickerView(){
     view.addSubview(viewWhite)
-    viewWhite.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 2, leftConstant: 0, bottomConstant: -12, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    viewWhite.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant:2 ,leftConstant: 0, bottomConstant:isNotEmptyHistory ?  -12:12, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     colorPicker.delegate = self
     colorPicker.backgroundColor = .white
     
@@ -124,13 +200,14 @@ class PickerColorViewController: UIViewController {
     
     view.addSubview(lblTitle)
     lblTitle.anchor(viewWhite.topAnchor, left: btnClose.rightAnchor, bottom: nil, right: btnOk.leftAnchor, topConstant: 6, leftConstant: 48, bottomConstant: 0, rightConstant: 48, widthConstant: 0, heightConstant: 0)
-    
-    view.addSubview(colorPicker)
-    colorPicker.anchor(lblTitle.bottomAnchor, left: viewWhite.leftAnchor, bottom: nil, right: viewWhite.rightAnchor, topConstant: -4, leftConstant: 12, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 0)
-    setupBrightnessSlider()
-    if containOpacity{
-    setupOpacitySlider()
-    }
+    setupStackView()
+//    view.addSubview(colorPicker)
+//    colorPicker.anchor(lblTitle.bottomAnchor, left: viewWhite.leftAnchor, bottom: nil, right: viewWhite.rightAnchor, topConstant: -4, leftConstant: 12, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 0)
+//    setupBrightnessSlider()
+//    if containOpacity{
+//        setupOpacitySlider()
+//        setupStoreView()
+//    }
     view.bringSubviewToFront(btnClose)
     view.bringSubviewToFront(btnOk)
     
@@ -187,10 +264,21 @@ class PickerColorViewController: UIViewController {
 
     if let sliderColour = sliderColour{
      colorDelegate?.colorDidChange(color: colorChanged, sliderColour: sliderColour)
+        UserDefaults.colorsDataArr.append(colorChanged.asData)
+        if UserDefaults.colorsDataArr.count > 10 {
+            UserDefaults.colorsDataArr.removeFirst()
+        }
     }
     colorDelegate?.dismissPicker()
 
   }
+    
+    func restoreSavedColor(savedColor:UIColor){
+        if let sliderColour = sliderColour{
+         colorDelegate?.colorDidChange(color: savedColor, sliderColour: sliderColour)
+        }
+        colorDelegate?.dismissPicker()
+    }
     
     private func setupBrightnessSlider() {
         brightnessSlider.connect(to: colorPicker)
@@ -200,7 +288,7 @@ class PickerColorViewController: UIViewController {
         
         // Layout
         brightnessSlider.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(brightnessSlider)
+        mainStackView.addSubview(brightnessSlider)
         
         NSLayoutConstraint.activate([
             brightnessSlider.centerXAnchor.constraint(equalTo: colorPicker.centerXAnchor),

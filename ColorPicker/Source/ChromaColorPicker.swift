@@ -305,13 +305,13 @@ public class ChromaColorPicker: UIControl, ChromaControlStylable {
     internal func setupColorWheelView() {
         colorWheelView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(colorWheelView)
-      colorWheelViewWidthConstraint = colorWheelView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1)
+        colorWheelViewWidthConstraint = colorWheelView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.77)
         
         NSLayoutConstraint.activate([
             colorWheelView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             colorWheelView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             colorWheelViewWidthConstraint,
-            colorWheelView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1),
+            colorWheelView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.77),
         ])//hena we modify the size of the wheel
     }
     

@@ -34,6 +34,10 @@ internal extension UIColor {
         return opacity
     }
   
+    var asData:Data{
+        return NSKeyedArchiver.archivedData(withRootObject: self) as Data
+    }
+    
 }
 
 extension UIImage{
@@ -45,4 +49,27 @@ extension UIImage{
           withRenderingMode(.alwaysTemplate).draw(at: .zero)
       }
   }
+}
+
+extension Data{
+    func getColorFromData()->UIColor?{
+        if let userSelectedColor = NSKeyedUnarchiver.unarchiveObject(with: self) as? UIColor {
+             return userSelectedColor
+            }
+        return nil
+    }
+}
+
+extension UserDefaults{
+   static var colorsDataArr: [Data] {
+        get {
+            if let storedArr = UserDefaults.standard.value(forKey: "COLOR_ARR_CONSTANT") as? [Data]{
+                return storedArr
+            }else{
+                return [Data]()
+            }
+        } set {
+            UserDefaults.standard.set(newValue, forKey: "COLOR_ARR_CONSTANT")
+        }
+    }
 }
