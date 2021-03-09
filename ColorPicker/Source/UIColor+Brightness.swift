@@ -66,7 +66,10 @@ extension UserDefaults{
             if let storedArr = UserDefaults.standard.value(forKey: "COLOR_ARR_CONSTANT") as? [Data]{
                 return storedArr
             }else{
-                return [Data]()
+                var dataArr = [Data]()
+                dataArr.append(UIColor.white.asData)
+                dataArr.append(UIColor.black.asData)
+                return dataArr
             }
         } set {
             UserDefaults.standard.set(newValue, forKey: "COLOR_ARR_CONSTANT")
