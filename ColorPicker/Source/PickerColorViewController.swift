@@ -161,6 +161,7 @@ class PickerColorViewController: UIViewController {
         brightnessSlider.rightAnchor.constraint(equalTo: mainStackView.rightAnchor, constant: -4).isActive = true
 //        brightnessSlider.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.95).isActive = true
 //        brightnessSlider.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor).isActive = true
+         
         mainStackView.addArrangedSubview(lblOpacity)
         lblOpacity .translatesAutoresizingMaskIntoConstraints = false
         lblOpacity.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.03).isActive = true
@@ -177,11 +178,10 @@ class PickerColorViewController: UIViewController {
         sliderOpacity.rightAnchor.constraint(equalTo: mainStackView.rightAnchor, constant: -4).isActive = true
        
         colorHistoryView = ColorHistoryView(pickerView: self)
-       // if isNotEmptyHistory{
         mainStackView.addArrangedSubview(colorHistoryView)
         colorHistoryView .translatesAutoresizingMaskIntoConstraints = false
         colorHistoryView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.075).isActive = true
-        //}
+        
     }
     
   func setupColorPickerView(){
@@ -198,10 +198,15 @@ class PickerColorViewController: UIViewController {
     
     view.addSubview(lblTitle)
     lblTitle.anchor(viewWhite.topAnchor, left: btnClose.rightAnchor, bottom: nil, right: btnOk.leftAnchor, topConstant: 6, leftConstant: 48, bottomConstant: 0, rightConstant: 48, widthConstant: 0, heightConstant: 0)
+    if containOpacity{
     setupStackView()
-//    view.addSubview(colorPicker)
-//    colorPicker.anchor(lblTitle.bottomAnchor, left: viewWhite.leftAnchor, bottom: nil, right: viewWhite.rightAnchor, topConstant: -4, leftConstant: 12, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 0)
-//    setupBrightnessSlider()
+        view.bringSubviewToFront(btnClose)
+        view.bringSubviewToFront(btnOk)
+        return
+    }
+    view.addSubview(colorPicker)
+    colorPicker.anchor(lblTitle.bottomAnchor, left: viewWhite.leftAnchor, bottom: nil, right: viewWhite.rightAnchor, topConstant: 4, leftConstant: 12, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 0)
+    setupBrightnessSlider()
 //    if containOpacity{
 //        setupOpacitySlider()
 //        setupStoreView()
@@ -288,7 +293,8 @@ class PickerColorViewController: UIViewController {
         
         // Layout
         brightnessSlider.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.addSubview(brightnessSlider)
+        
+        view.addSubview(brightnessSlider)
         
         NSLayoutConstraint.activate([
             brightnessSlider.centerXAnchor.constraint(equalTo: colorPicker.centerXAnchor),
