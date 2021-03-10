@@ -20,6 +20,8 @@ class ColorHistoryView:UIView{
         let cV = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         cV.backgroundColor = .white
+        cV.showsHorizontalScrollIndicator = false
+        cV.showsVerticalScrollIndicator = false
         //cV.isUserInteractionEnabled = true
         return cV
     }()
