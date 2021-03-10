@@ -53,7 +53,7 @@ class PickerColorViewController: UIViewController {
         stack.distribution = .fill
         stack.alignment = .fill
         stack.clipsToBounds = true
-        stack.spacing = 5
+        stack.spacing = 6
         return stack
     }()
   
@@ -262,7 +262,9 @@ class PickerColorViewController: UIViewController {
 
     if let sliderColour = sliderColour{
      colorDelegate?.colorDidChange(color: colorChanged, sliderColour: sliderColour)
+        if  !UserDefaults.colorsDataArr.contains(colorChanged.asData){
         UserDefaults.colorsDataArr.append(colorChanged.asData)
+        }
         if UserDefaults.colorsDataArr.count > 10 {
             UserDefaults.colorsDataArr.removeFirst()
         }

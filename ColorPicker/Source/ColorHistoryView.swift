@@ -14,9 +14,9 @@ class ColorHistoryView:UIView{
     var storedColorArr = UserDefaults.colorsDataArr
     var collectionView:UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.sectionInset = UIEdgeInsets(top: 3, left: 2, bottom: 1, right: 2)
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 22, height: 22)
+        layout.itemSize = CGSize(width: 22, height: 20)
         let cV = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         cV.backgroundColor = .white
@@ -29,7 +29,7 @@ class ColorHistoryView:UIView{
         self.pickerView = pickerView
         isUserInteractionEnabled = true
         addSubview(collectionView)
-        collectionView.anchor(topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 4, leftConstant: 2, bottomConstant: 0, rightConstant: 2, widthConstant: 0, heightConstant: 0)
+        collectionView.anchor(topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 5, leftConstant: 2, bottomConstant: 0, rightConstant: 2, widthConstant: 0, heightConstant: 0)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
