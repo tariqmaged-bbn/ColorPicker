@@ -43,7 +43,7 @@ class PickerColorViewController: UIViewController {
       lbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
       lbl.textAlignment = .left
       lbl.backgroundColor = .clear
-        lbl.font = UIFont.systemFont(ofSize: 10)
+        lbl.font = UIFont.systemFont(ofSize: 9)
       return lbl
     }()
     
@@ -164,7 +164,7 @@ class PickerColorViewController: UIViewController {
          
         mainStackView.addArrangedSubview(lblOpacity)
         lblOpacity .translatesAutoresizingMaskIntoConstraints = false
-        lblOpacity.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.03).isActive = true
+        lblOpacity.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.025).isActive = true
         
         mainStackView.addArrangedSubview(sliderOpacity)
         
@@ -186,7 +186,7 @@ class PickerColorViewController: UIViewController {
     
   func setupColorPickerView(){
     view.addSubview(viewWhite)
-    viewWhite.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant:2 ,leftConstant: 0, bottomConstant:-16, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    viewWhite.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant:0 ,leftConstant: 0, bottomConstant:-12, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     colorPicker.delegate = self
     colorPicker.backgroundColor = .white
     
