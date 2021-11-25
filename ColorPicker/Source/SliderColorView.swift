@@ -109,7 +109,7 @@ import UIKit
  NSLayoutConstraint.activate([
      pickerController.view.centerXAnchor.constraint(equalTo: pickerView.centerXAnchor),
 
-     pickerController.view.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor),
+     pickerController.view.centerYAnchor.constraint(equalTo: pickerView.centerYAnchor,constant: 24),
 
      pickerController.view.widthAnchor.constraint(equalTo: pickerView.widthAnchor, multiplier: 0.8),
 
